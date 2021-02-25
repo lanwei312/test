@@ -11,7 +11,6 @@ public class TreeUtil {
         List<Org> resultList = new ArrayList<Org>();
 
         Map<Object, Org> treeMap = new HashMap<Object, Org>();
-        Org itemTree;
 
         for (Org org : entityList) {
             //把所有的数据放到map当中，id为key
@@ -117,7 +116,6 @@ public class TreeUtil {
         org15.setOrgName("预览");
         org15.setParentId(5);
 
-
         List<Org> orgs = new ArrayList<>();
         orgs.add(org1);
         orgs.add(org2);
@@ -134,6 +132,8 @@ public class TreeUtil {
         orgs.add(org13);
         orgs.add(org14);
         orgs.add(org15);
+
         List<Org> tree = getTreeList(0, orgs);
+
     }
 }
