@@ -13,30 +13,28 @@ public class TreeUtil {
         Map<Object, Org> treeMap = new HashMap<Object, Org>();
         Org itemTree;
 
-        for(int i=0;i<entityList.size()&&!entityList.isEmpty();i++) {
-            itemTree = entityList.get(i);
+        for (Org org : entityList) {
             //把所有的数据放到map当中，id为key
-            treeMap.put(itemTree.getOrgId(), itemTree);
+            treeMap.put(org.getOrgId(), org);
             //把顶层数据放到集合中
-            if(topId == itemTree.getParentId() || itemTree.getParentId() == null) {
-                resultList.add(itemTree);
+            if(topId == org.getParentId() || org.getParentId() == null) {
+                resultList.add(org);
             }
         }
 
         //循环数据，把数据放到上一级的childen属性中
-        for(int i = 0; i< entityList.size()&&!entityList.isEmpty();i++) {
-            itemTree = entityList.get(i);
+        for (Org org : entityList) {
             //在map集合中寻找父亲
-            Org data = treeMap.get(itemTree.getParentId());
+            Org data = treeMap.get(org.getParentId());
             //判断父亲有没有
             if(data != null) {
                 if(data.getOrgList() == null) {
                     data.setOrgList(new ArrayList<>());
                 }
                 //把子节点 放到父节点childList当中
-                data.getOrgList().add(itemTree);
+                data.getOrgList().add(org);
                 //把放好的数据放回map当中
-                treeMap.put(itemTree.getParentId(), data);
+                treeMap.put(org.getParentId(), data);
             }
         }
         return resultList;
