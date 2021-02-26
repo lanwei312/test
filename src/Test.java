@@ -34,7 +34,6 @@ public class Test {
         org2.setOrgName("李四_new");
         System.out.println(orgList2.get(0).getOrgId()+"-"+orgList2.get(0).getParentId()+"-"+orgList2.get(0).getOrgName());
         // 2-0-李四_new
-
         /*
         map除了基本类型是正儿八经的值传递，其余的都是引用地址传递
 
@@ -45,6 +44,28 @@ public class Test {
         Java中的对象变量 其实就中一个指针，他指向对象的首地址，map中key对应的其实是某个对象的首地址，指向的是某个对象，
         你往对象中加了数据，对象的内容变了，但是对象的首地址没有变，map中的key仍然指向的是这个对象的首地址。
         */
+
+        Org org3 = new Org();
+        org3.setOrgId(3);
+        org3.setOrgName("班主任");
+        org3.setParentId(0);
+
+        Org org4 = new Org();
+        org4.setOrgId(4);
+        org4.setOrgName("体育委员");
+        org4.setParentId(3);
+
+        List<Org> orgList3 = new ArrayList<>();
+        orgList3.add(org3);
+        orgList3.add(org4);
+        Map<Object, Object> obj = new HashMap<>();
+        obj.put(org3.getOrgId(), org3);
+        obj.put(org4.getOrgId(), org4);
+        org3.setOrgList(new ArrayList<>());
+        org3.getOrgList().add(org4);
+        org4.setOrgName("语文老师");
+        System.out.println("66");
+
     }
 
 
